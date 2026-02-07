@@ -9,10 +9,6 @@ Lumina Gifts – Premium E-Commerce Interface
 ## 📖 Description
 Write a paragraph here explaining what the project is, why you built it, and what problem it solves. 
 
-## ✨ Features
-* Feature 1
-* Feature 2
-* Feature 3
 
 Authors
 **Trinath Nayak**
