@@ -2,8 +2,6 @@
 Lumina Gifts – Premium E-Commerce Interface
 
 
-# [Project Name]
-
 ![License](https://img.shields.io/badge/license-MIT-blue) ![Version](https://img.shields.io/badge/version-1.0.0-green)
 
 > A brief, one-sentence description of what your project does.
