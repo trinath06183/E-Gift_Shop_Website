@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumina Gifts - Premium Indian Gift Shop</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            font-family: 'Lato', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        body {
+            background-color: #FAF8F3;
+            color: #2C2C2C;
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #C9A961 100%);
+        }
+        
+        .hero-overlay {
+            background: linear-gradient(rgba(44, 44, 44, 0.4), rgba(44, 44, 44, 0.4));
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #D4AF37 0%, #C9A961 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+        }
+        
+        .category-card {
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(201, 169, 97, 0.2));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .category-card:hover::before {
+            opacity: 1;
+        }
+        
+        .category-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .product-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(44, 44, 44, 0.95), transparent);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover .product-overlay {
+            transform: translateY(0);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #D4AF37 0%, #C9A961 100%);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .mandala-pattern {
+            background-image: radial-gradient(circle at 25% 25%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+                              radial-gradient(circle at 75% 75%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <h1 class="text-3xl font-bold text-transparent bg-clip-text gold-gradient">Lumina</h1>
+                    <span class="ml-2 text-sm text-gray-600 hidden sm:block">Premium Indian Gifts</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-yellow-700 font-medium">Home</a>
+                    <a href="#shop" class="nav-link text-gray-700 hover:text-yellow-700 font-medium">Shop</a>
+                    <a href="#categories" class="nav-link text-gray-700 hover:text-yellow-700 font-medium">Categories</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-yellow-700 font-medium">About</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-yellow-700 font-medium">Contact</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-700 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <a href="#home" class="block py-2 text-gray-700 hover:text-yellow-700 font-medium">Home</a>
+                <a href="#shop" class="block py-2 text-gray-700 hover:text-yellow-700 font-medium">Shop</a>
+                <a href="#categories" class="block py-2 text-gray-700 hover:text-yellow-700 font-medium">Categories</a>
+                <a href="#about" class="block py-2 text-gray-700 hover:text-yellow-700 font-medium">About</a>
+                <a href="#contact" class="block py-2 text-gray-700 hover:text-yellow-700 font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://themansionworld.com/cdn/shop/files/Artboard_5_6_52aa119b-8b15-4836-b951-cd1271bc23a4_2000x.jpg?v=1722840215" 
+                 alt="Indian Gifts" 
+                 class="w-full h-full object-cover">
+            <div class="hero-overlay absolute inset-0"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-4 mandala-pattern">
+            <h2 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                Find the Perfect<br>
+                <span class="text-transparent bg-clip-text gold-gradient">Indian Gift</span>
+            </h2>
+            <p class="text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto">
+                Handcrafted treasures that celebrate India's rich heritage
+            </p>
+            <a href="#shop" class="btn-primary inline-block px-10 py-4 text-white font-semibold rounded-full text-lg shadow-lg">
+                Shop Now <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-white text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- Features/Trust Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="text-center p-8 rounded-2xl hover:shadow-xl transition-all duration-300">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full gold-gradient flex items-center justify-center">
+                        <i class="fas fa-shipping-fast text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3">Free Shipping</h3>
+                    <p class="text-gray-600">Pan-India delivery on all orders above ₹2,000</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="text-center p-8 rounded-2xl hover:shadow-xl transition-all duration-300">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full gold-gradient flex items-center justify-center">
+                        <i class="fas fa-gift text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3">Premium Wrapping</h3>
+                    <p class="text-gray-600">Elegant traditional packaging for every gift</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="text-center p-8 rounded-2xl hover:shadow-xl transition-all duration-300">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full gold-gradient flex items-center justify-center">
+                        <i class="fas fa-headset text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3">24/7 Support</h3>
+                    <p class="text-gray-600">Dedicated assistance for your gifting needs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Best Sellers Section -->
+    <section id="shop" class="py-20 bg-gradient-to-b from-white to-gray-50 mandala-pattern">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Best Sellers</h2>
+                <p class="text-xl text-gray-600">Curated collection of India's finest artisanal treasures</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Product 1 -->
+                <div class="product-card relative bg-white rounded-2xl overflow-hidden shadow-lg card-hover">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://www.mypoojabox.in/cdn/shop/files/DSC09334copy.jpg?v=1704316287" 
+                             alt="Brass Diya Set" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Handcrafted Brass Diya Set</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Traditional oil lamps with intricate designs</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-transparent bg-clip-text gold-gradient">₹3,499</span>
+                        </div>
+                    </div>
+                    <div class="product-overlay p-6 flex items-end">
+                        <button class="btn-primary w-full py-3 rounded-xl text-white font-semibold">
+                            <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card relative bg-white rounded-2xl overflow-hidden shadow-lg card-hover">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://pashtush.in/cdn/shop/files/pashtush-pashmina-pashtush-his-and-her-set-of-reversible-pure-wool-stole-and-pure-ethnic-weave-shawl-with-wooden-chester-box-multi-colour-43393357644091.jpg?v=1696657914&width=1800" 
+                             alt="Pashmina Shawl" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Pure Kashmiri Pashmina Shawl</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Authentic hand-woven luxury fabric</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-transparent bg-clip-text gold-gradient">₹12,999</span>
+                        </div>
+                    </div>
+                    <div class="product-overlay p-6 flex items-end">
+                        <button class="btn-primary w-full py-3 rounded-xl text-white font-semibold">
+                            <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card relative bg-white rounded-2xl overflow-hidden shadow-lg card-hover">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://nestasia.in/cdn/shop/files/Lord-Ganesha-On-Lotus-Idol-17x12cm_7_12f18f40-79bb-4897-a5e0-4493ab8a2d7c.jpg?v=1753852095&width=600" 
+                             alt="Marble Ganesha" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Marble Ganesha Idol</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Exquisite Makrana marble sculpture</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-transparent bg-clip-text gold-gradient">₹8,499</span>
+                        </div>
+                    </div>
+                    <div class="product-overlay p-6 flex items-end">
+                        <button class="btn-primary w-full py-3 rounded-xl text-white font-semibold">
+                            <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card relative bg-white rounded-2xl overflow-hidden shadow-lg card-hover">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://m.media-amazon.com/images/I/51zYR-2INWL.jpg" 
+                             alt="Silver Tea Set" 
+                             class="w-full h-full object-cover">about
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Sterling Silver Tea Set</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Royal Rajasthani craftsmanship</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-transparent bg-clip-text gold-gradient">₹24,999</span>
+                        </div>
+                    </div>
+                    <div class="product-overlay p-6 flex items-end">
+                        <button class="btn-primary w-full py-3 rounded-xl text-white font-semibold">
+                            <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Gift Categories</h2>
+                <p class="text-xl text-gray-600">Explore our curated collections for every occasion</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Category 1 -->
+                <div class="category-card relative rounded-2xl overflow-hidden shadow-xl cursor-pointer">
+                    <div class="h-96 relative">
+                        <img src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=600&h=600&fit=crop" 
+                             alt="Personalized Gifts" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-8">
+                            <div>
+                                <h3 class="text-3xl font-bold text-white mb-2">Personalized Gifts</h3>
+                                <p class="text-gray-200 mb-4">Custom engraved treasures</p>
+                                <button class="btn-primary px-6 py-2 rounded-full text-white font-semibold text-sm">
+                                    Explore <i class="fas fa-arrow-right ml-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Category 2 -->
+                <div class="category-card relative rounded-2xl overflow-hidden shadow-xl cursor-pointer">
+                    <div class="h-96 relative">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=600&fit=crop" 
+                             alt="Corporate Gifting" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-8">
+                            <div>
+                                <h3 class="text-3xl font-bold text-white mb-2">Corporate Gifting</h3>
+                                <p class="text-gray-200 mb-4">Luxury gifts for businesses</p>
+                                <button class="btn-primary px-6 py-2 rounded-full text-white font-semibold text-sm">
+                                    Explore <i class="fas fa-arrow-right ml-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Category 3 -->
+                <div class="category-card relative rounded-2xl overflow-hidden shadow-xl cursor-pointer">
+                    <div class="h-96 relative">
+                        <img src="https://luxeartisanship.com/cdn/shop/files/gemstone-work-brass-elephant-55-ethnic-indian-decor-showpiece-2776415.jpg?v=1764052117&width=720" 
+                             alt="Traditional Souvenirs" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-8">
+                            <div>
+                                <h3 class="text-3xl font-bold text-white mb-2">Traditional Souvenirs</h3>
+                                <p class="text-gray-200 mb-4">Authentic Indian crafts</p>
+                                <button class="btn-primary px-6 py-2 rounded-full text-white font-semibold text-sm">
+                                    Explore <i class="fas fa-arrow-right ml-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-20 bg-gradient-to-b from-gray-50 to-white mandala-pattern">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Image -->
+                <div class="order-2 lg:order-1">
+                    <div class="rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/rd-gg-dl/AOI_d__xr-bgX6HftqDgm_05ZrhG3zfUENhqoZhiDpKWVg1rvlslLZSpsILCZGCrLSEZbb87X8R8DBpzM9COgeWrXguwmnBinYfwp-jbJw6QauzMqQLnH3rKf3OE7ABV-vkYqS0r_neA63CurMp8HG5Hy25a4tRR95Okpn9hNCMIZQSc4h-cZ8tTcN0U9YNfyi0TxKiMVLh53qrCMXooKT02IO4VmrNCZYQjU3IXLiZ-rIRI85FMWD7DgD7t6VQf0l9nUxIqhix0eHR9j6xfBVSBup2bbu3QFIgbNEVoEbWks3sF65m3Ssb35x1XqDsiPddPaxgDTPXqiQSg9_cMUs5oNG3cu-5CnlOistM4aWg96mnVktrTgciateVGO99s4iYDhd0WyQTUfTjX_gHcyVjgVJ4kCCjEU2yDbFRH_VPhP61uEPDQvmj91c3mkIKCA-DXJbzTljfBwBkO1y5q_M6KIjxmp-ZJ2N7gqDpyS1CQHyFa2CW6QDxb0JDs5w9qIOyTG_lBwFy-cb2_073CX4u1-iO-zRr3dzwN876zUg2ef9SKxnkDbAf1ydRV2gSOgU5bTX7Bp1BMjLxzeI4TJ1WrFTPG50nkoLw0lpvt8tdvlT6HSd2Knfxt6OlgP-ji_cwyu1FHqqLga5JSeS4JipoMzia1Av72sXFN0O3zW_G3FPVDSXSsKo1qEd8wybJrjoxWDPK4tsZQLuhFuRWe4GbbR0sKsoKjHFWSVjOYGDHr4uUd6kYnew9cUN01q_L050rEvMOrV4w9ZJXLqeVCT4W7vgZjZIYnGbPethmJcKEsCmM4Y7HsRqppfAYibE7gh8-xutgbqEk4D2FhSMSwmgyCDIVsRE8ZStfrWvV0NeS3ma8jlC_iltY7eV_nMCEnGzmA5dFT1XacxvIHQq6m6oXcIkSs_6UiOFaI1J5vyp5X8G4ZrgouP23Dc4tFfNpa07qcZ7BDNTvrSGpAkxyClIQr1EnBgxpfPl0hdwDkyhf29a4PvZonaIkDKX5HGFHr72MuCDnro1JpdwuaSYYHmQaLO1TAvqp4Y4bEtXUD_WeXcu83Yw1CZ-Q5jg48H_9nGVxoxHQ5nk3rTdP6gP3GSCi-TIEe-zdBKBFbE6lX3styLeYLqHL1BXg0j7AJgVNoF6T0ENI1pibsD-0Cbfutcru83jTybm-tMTPcmrMdzvffvT5xhfos_F3BJCFp7RGBnxg7zAp9FRbf4s_obwzGt5Q6YVtZWso=s1024-rj" 
+                             alt="About Lumina" 
+                             class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <!-- Text Content -->
+                <div class="order-1 lg:order-2">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Our Story</h2>
+                    <div class="w-20 h-1 gold-gradient mb-8 rounded-full"></div>
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        At <span class="font-semibold text-transparent bg-clip-text gold-gradient">Lumina Gifts</span>, we celebrate India's rich cultural heritage through meticulously curated gifts that tell a story. Each piece in our collection is handpicked from master artisans across India, representing centuries of tradition and craftsmanship.
+                    </p>
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        From the intricate brass work of Moradabad to the delicate pashminas of Kashmir, from the marble sculptures of Jaipur to the silver artistry of Rajasthan – we bring you authentic treasures that embody luxury, elegance, and cultural significance.
+                    </p>
+                    <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+                        We believe that the perfect gift is more than just an object; it's an emotion, a memory, and a connection between hearts. Let us help you create unforgettable moments with gifts that truly matter.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-yellow-600 text-xl"></i>
+                            <span class="text-gray-700 font-medium">100% Authentic Products</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-yellow-600 text-xl"></i>
+                            <span class="text-gray-700 font-medium">Artisan Partnerships</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-yellow-600 text-xl"></i>
+                            <span class="text-gray-700 font-medium">Sustainable Practices</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact/Order Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Get in Touch</h2>
+                <p class="text-xl text-gray-600">Have a special request? We're here to help create the perfect gift</p>
+            </div>
+            
+            <form class="bg-gradient-to-br from-gray-50 to-white rounded-3xl shadow-xl p-8 md:p-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2">Your Name</label>
+                        <input type="text" 
+                               placeholder="Enter your name" 
+                               class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-yellow-500 focus:outline-none transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2">Email Address</label>
+                        <input type="email" 
+                               placeholder="your@email.com" 
+                               class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-yellow-500 focus:outline-none transition-colors">
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-semibold mb-2">Gift Type</label>
+                    <select class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-yellow-500 focus:outline-none transition-colors">
+                        <option>Personalized Gifts</option>
+                        <option>Corporate Gifting</option>
+                        <option>Traditional Souvenirs</option>
+                        <option>Custom Order</option>
+                    </select>
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-semibold mb-2">Your Message</label>
+                    <textarea rows="5" 
+                              placeholder="Tell us about your gifting needs..." 
+                              class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-yellow-500 focus:outline-none transition-colors resize-none"></textarea>
+                </div>
+                
+                <button type="submit" class="btn-primary w-full py-4 text-white font-semibold rounded-xl text-lg">
+                    <i class="fas fa-paper-plane mr-2"></i> Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-b from-gray-900 to-black text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <!-- Brand Column -->
+                <div class="md:col-span-2">
+                    <h3 class="text-3xl font-bold text-transparent bg-clip-text gold-gradient mb-4">Lumina Gifts</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        India's premier destination for luxury gifting. Celebrating tradition, craftsmanship, and timeless elegance.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center hover:scale-110 transition-transform">
+                            <i class="fab fa-facebook-f text-white"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center hover:scale-110 transition-transform">
+                            <i class="fab fa-instagram text-white"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center hover:scale-110 transition-transform">
+                            <i class="fab fa-twitter text-white"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center hover:scale-110 transition-transform">
+                            <i class="fab fa-whatsapp text-white"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-xl font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#shop" class="text-gray-400 hover:text-yellow-500 transition-colors">Shop</a></li>
+                        <li><a href="#categories" class="text-gray-400 hover:text-yellow-500 transition-colors">Categories</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-yellow-500 transition-colors">About Us</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-yellow-500 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-xl font-semibold mb-4">Contact Us</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-yellow-500"></i>
+                            <span>Bhubaneswar, Odisha, India,  754160</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-3 text-yellow-500"></i>
+                            <span>+91 6370437852</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-yellow-500"></i>
+                            <span>bn06183@gmail.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Bottom Bar -->
+            <div class="pt-8 border-t border-gray-800 text-center">
+                <p class="text-gray-400">
+                    &copy; 2024 Lumina Gifts. All rights reserved. Crafted with 
+                    <i class="fas fa-heart text-red-500 mx-1"></i> in India
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-top" class="fixed bottom-8 right-8 w-14 h-14 gold-gradient rounded-full shadow-2xl opacity-0 pointer-events-none transition-all duration-300 hover:scale-110">
+        <i class="fas fa-arrow-up text-white text-xl"></i>
+    </button>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Scroll to Top Button
+        const scrollTopBtn = document.getElementById('scroll-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+                scrollTopBtn.classList.add('opacity-100', 'pointer-events-auto');
+            } else {
+                scrollTopBtn.classList.add('opacity-0', 'pointer-events-none');
+                scrollTopBtn.classList.remove('opacity-100', 'pointer-events-auto');
+            }
+        });
+        
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Add smooth scrolling for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Add entrance animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all product cards and category cards
+        document.querySelectorAll('.product-card, .category-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
